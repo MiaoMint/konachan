@@ -1,0 +1,4 @@
+{
+  "version": 2,
+  "routes": [{ "src": "/api/(.*)", "dest": "https://konachan.net$1" }]
+}
