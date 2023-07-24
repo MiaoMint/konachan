@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:konachan/pages/main/main.dart';
 import 'package:konachan/utils/storage.dart';
@@ -5,7 +6,9 @@ import 'package:konachan/utils/storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await StroageUtils.ensureInitialized();
+  if (!kIsWeb) {
+    await StroageUtils.ensureInitialized();
+  }
 
   runApp(const MyApp());
 }

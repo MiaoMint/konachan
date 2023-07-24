@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:konachan/pages/library/controller.dart';
-import 'package:konachan/utils/wallpaper.dart';
+import 'package:konachan/utils/wallpaper.dart'
+    if (dart.library.html) 'package:konachan/dont_use_web/wallpaper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LibraryPage extends StatelessWidget {
