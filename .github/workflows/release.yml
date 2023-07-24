@@ -1,0 +1,41 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.10.3
+          channel: stable
+      - name: Install project dependencies
+        run: flutter pub get
+      - name: Build artifacts
+        run: flutter build windows --release
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: "zip"
+          filename: Konachan-${{github.ref_name}}-windows.zip
+          directory: build/windows/runner/Release
+      # 发布安装包
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: "build/windows/runner/Release/Konachan-${{github.ref_name}}-windows.zip"
+      - name: Release Packages
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/windows/runner/Release/Konachan-${{github.ref_name}}-windows.zip"
+          allowUpdates: true
