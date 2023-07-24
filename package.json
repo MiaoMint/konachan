@@ -1,0 +1,14 @@
+{
+  "name": "konachan",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
