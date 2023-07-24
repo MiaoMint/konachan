@@ -22,6 +22,8 @@ jobs:
         run: flutter pub get
       - name: Build artifacts
         run: flutter build windows --release
+      - name: Build Installer
+        run: iex ("& {0} {1} {2}" -f '"C:\Program Files (x86)\Inno Setup 6\iscc.exe"',"/DMyAppVersion='${{github.ref_name}}'", ".\inno_setup.iss")
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
@@ -36,5 +38,5 @@ jobs:
       - name: Release Packages
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/windows/runner/Release/Konachan-${{github.ref_name}}-windows.zip"
+          artifacts: "build/windows/runner/Release/Konachan-${{github.ref_name}}-windows.zip,Output/*.exe"
           allowUpdates: true
