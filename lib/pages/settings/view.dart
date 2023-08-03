@@ -1,4 +1,4 @@
-import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 trailing: TextButton(
                   onPressed: () async {
-                    final path = await FilePicker.platform.getDirectoryPath();
+                    final path = await getDirectoryPath();
                     if (path != null) {
                       StroageUtils.downloadPath = path;
                       setState(() {});
